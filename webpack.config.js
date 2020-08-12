@@ -1,20 +1,23 @@
+
 module.exports = {
   entry: [
-    './src/index.js',
-    './src/index.css'
+    './src/index.js'
   ], 
   output: {
     path: __dirname,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   }, 
   module: {
-    rules: [
+    rules: [  
       {
         test: /\.js$/,
         exclude:/node_modules/,
         use: {
-          loader: "script-loader"
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }, 
       {
@@ -25,13 +28,6 @@ module.exports = {
           }, 
           {
             loader: "css-loader",
-            // options: {
-            //   modules: true, 
-            //   importLoaders: 1,
-            //   localIdentName: "[name]_[local]_[hash:base64]",
-            //   sourceMap: true,
-            //   minimize: true
-            // }
           }
         ]
       }
@@ -39,3 +35,6 @@ module.exports = {
   }
 }
 
+// Sources Cited:
+//https://medium.com/jeremy-gottfrieds-tech-blog/tutorial-how-to-build-a-webpack-app-with-vanilla-js-or-react-72ca2cc7e14
+//https://github.com/jonathonwang/webpack-typescript-starter/blob/master/webpack.config.js
